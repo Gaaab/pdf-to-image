@@ -1,5 +1,5 @@
 {
-    "name": "spatie/pdf-to-image",
+    "name": "gaaab/pdf-to-image",
     "description": "Convert a pdf to an image",
     "keywords": [
         "spatie",
@@ -12,16 +12,21 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Freek Van der Herten",
-            "email": "freek@spatie.be",
-            "homepage": "https://spatie.be",
+            "name": "Gabriel Badiola",
+            "email": "web.gabriel.badiola@gmail.com",
             "role": "Developer"
         }
     ],
     "require": {
-        "php" : "^7.2|^8.0",
+        "php" : "^7.0|^8.0",
         "ext-imagick" : "*"
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:Gaaab/digi-signer-php-client.git"
+        }
+    ],
     "require-dev": {
         "phpunit/phpunit" : "^8.0|^9.0"
     },
