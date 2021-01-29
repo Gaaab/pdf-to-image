@@ -20,13 +20,13 @@ class Pdf
 
     protected $validOutputFormats = ['jpg', 'jpeg', 'png'];
 
-    public function __construct(string $pdfFile)
+    public function __construct(string $pdfFile, $gsPath = null)
     {
         if (! filter_var($pdfFile, FILTER_VALIDATE_URL) && ! file_exists($pdfFile)) {
             throw new PdfDoesNotExist();
         }
 
-        $this->ghostscript = (new Ghostscript())
+        $this->ghostscript = (new Ghostscript($gsPath))
             ->setInputFile($pdfFile)
             ->setResolution(144);
     }
