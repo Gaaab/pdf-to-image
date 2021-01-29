@@ -11,6 +11,10 @@ use Spatie\PdfToImage\Exceptions\PageDoesNotExist;
 
 class PdfTest extends TestCase
 {
+    protected static $GS_PATH = null;
+
+    // protected static $GS_PATH = "P:\\gs9.53.3\\bin\\gs.exe";
+
     /** @var string */
     protected $testFile;
 
@@ -38,7 +42,7 @@ class PdfTest extends TestCase
     /** @test */
     public function it_can_convert_a_pdf()
     {
-        $image = (new pdf($this->multipageTestFile))
+        $image = (new Pdf($this->multipageTestFile, static::$GS_PATH))
             ->saveImage($this->temporaryDirectory->path('image.jpg'));
     }
 
@@ -47,7 +51,7 @@ class PdfTest extends TestCase
     {
         $this->expectException(PdfDoesNotExist::class);
 
-        new Pdf('pdfdoesnotexists.pdf');
+        new Pdf('pdfdoesnotexists.pdf', static::$GS_PATH);
     }
 
     /** @test */
@@ -55,7 +59,7 @@ class PdfTest extends TestCase
     {
         $this->expectException(InvalidFormat::class);
 
-        (new Pdf($this->testFile))->setOutputFormat('bla');
+        (new Pdf($this->testFile, static::$GS_PATH))->setOutputFormat('bla');
     }
 
     /** @test */
@@ -63,6 +67,6 @@ class PdfTest extends TestCase
     {
         $this->expectException(PageDoesNotExist::class);
 
-        (new Pdf($this->testFile))->setPage(5);
+        (new Pdf($this->testFile, static::$GS_PATH))->setPage(5);
     }
 }
